@@ -1,12 +1,12 @@
 //@ts-nocheck
 import Link from "next/link";
+import { useContext } from "react";
+import { UserContext } from "@/lib/context";
 
 // Top Navbar
 export default function Navbar(){
-        const user = null;
-        const username = null;
+    const {user, username} = useContext(UserContext)
     
-
     return (
 
             <nav className="navbar">
@@ -18,7 +18,7 @@ export default function Navbar(){
                     </li>
 
                     {/* user logado e tem username */}
-                    {username && (
+                    {username !== "" && (
                         <>
                             <li className="push-left">
                                 <Link href="/admin">
@@ -34,10 +34,10 @@ export default function Navbar(){
                     )}
 
                     {/* user logado e tem username */}
-                    {!username && (
+                    {username !== "" && (
                         <li>
                             <Link href="/enter">
-                                <button className="btn-blue">Log in</button>
+                                <button className="btn-blue">Sign Out</button>
                             </Link>
                         </li>
                     )}
