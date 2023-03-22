@@ -18,7 +18,7 @@ export default function Navbar(){
                     </li>
 
                     {/* user logado e tem username */}
-                    {username !== "" && (
+                    {username && (
                         <>
                             <li className="push-left">
                                 <Link href="/admin">
@@ -33,11 +33,11 @@ export default function Navbar(){
                         </>
                     )}
 
-                    {/* user logado e tem username */}
-                    {username !== "" && (
+                    {/* user não logado OU não tem username */}
+                    {!username && (
                         <li>
                             <Link href="/enter">
-                                <button className="btn-blue">Sign Out</button>
+                                <button className="btn-blue">Log In</button>
                             </Link>
                         </li>
                     )}

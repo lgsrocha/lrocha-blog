@@ -1,9 +1,10 @@
+import { User } from "firebase/auth";
 import { createContext } from "react";
 
 //Tipando os dados do usuário
 type UserType = {
-    user:string
-    username:string 
+    user: User | null
+    username:string | null
 }
 
 //Tipando props do contexto
@@ -14,8 +15,8 @@ type UserType = {
 
 //valor Default user Context
 export const default_UserContext ={
-        user: "",
-        username: "teste"
+        user: null,
+        username: null
 }
 
 //Criando Contexto
