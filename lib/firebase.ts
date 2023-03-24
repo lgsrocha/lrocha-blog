@@ -1,8 +1,10 @@
 // var firebase = require('firebase/compat/app')
 import { initializeApp } from "firebase/app";
-import { Firestore, getFirestore } from 'firebase/firestore';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { FirebaseStorage } from "firebase/storage";
+import { collection, serverTimestamp , Firestore, getDocs, getFirestore, limit, query, Timestamp, where } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getStorage } from "firebase/storage";
+import type { TaskEvent } from 'firebase/storage';
+
 
 // import '@firebase/auth'
 // import '@firebase/storage-compat';
@@ -27,15 +29,20 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const googleAuthProvider = new GoogleAuthProvider();
 export const storage : Firestore = getFirestore(app)
+export const fileStorage = getStorage(app)
+export const STATE_CHANGED: TaskEvent = 'state_changed';
 
 /**`
  * Gets a users/{uid} document with username
  * @param  {string} username
  */
-export async function getUserWithUsername(username) {
-  const usersRef = firestore.collection('users');
-  const query = usersRef.where('username', '==', username).limit(1);
-  const userDoc = (await query.get()).docs[0];
+
+
+export async function getUserWithUsername(username : string) {
+  const usersRef = collection(storage, "users");
+  const q = query(usersRef, where("username", "==", username), limit(1));
+  const querySnapshot = await getDocs(q);
+  const userDoc = querySnapshot.docs[0];
   return userDoc;
 }
 
@@ -43,7 +50,7 @@ export async function getUserWithUsername(username) {
  * Converts a firestore document to JSON
  * @param  {DocumentSnapshot} doc
  */
-export function postToJSON(doc) {
+export function postToJSON(doc : any) {
   const data = doc.data();
   return {
     ...data,
@@ -52,3 +59,7 @@ export function postToJSON(doc) {
     updatedAt: data.updatedAt.toMillis(),
   };
 }
+
+//converte o timestamp do Firestore para um número
+export const fromMillis = Timestamp.fromMillis; 
+export const serverTimestamps = serverTimestamp();

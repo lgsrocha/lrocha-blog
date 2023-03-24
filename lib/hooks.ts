@@ -1,7 +1,7 @@
-import { doc, DocumentData, getDoc } from "firebase/firestore";
+import { collection, doc, DocumentData, getDoc, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, storage } from "./firebase";
+import { auth, storage} from "./firebase";
 
 
 export function useUserData() {
@@ -14,10 +14,14 @@ const [username, setUsername] = useState(null);
      
     let unsubscribe : any
     if (user) {
-      const ref = doc(storage, "users", user.uid);  
+      const uidRef = doc(storage, "users", user.uid);  
       (async () => {
-        unsubscribe = await getDoc(ref)})();
-        setUsername(unsubscribe?.username);
+        const unsubscribe = await getDoc(uidRef)
+         if (unsubscribe.exists()){
+          setUsername(unsubscribe.data().username)
+         }
+        }
+         )();
     } else {
       setUsername(null);
     }

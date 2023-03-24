@@ -6,7 +6,6 @@ import { UserContext } from "@/lib/context";
 // Top Navbar
 export default function Navbar(){
     const {user, username} = useContext(UserContext)
-    
     return (
 
             <nav className="navbar">

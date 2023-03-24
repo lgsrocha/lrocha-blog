@@ -1,7 +1,7 @@
 import { Timestamp } from "firebase/firestore"
 import internal from "stream"
 
-export type user = {
+export type userType = {
         uid: string
         photoURL: string
         displayName: string
@@ -20,7 +20,7 @@ export type post = {
         username: string   
 }
 
-export type PostFeed = {
+export type PostFeedType = {
     posts: [
         post
     ]
