@@ -3,12 +3,13 @@ import { auth, googleAuthProvider, storage } from '../lib/firebase'
 import { BaseSyntheticEvent, useCallback, useContext, useEffect, useState } from "react";
 import { UserContext } from "@/lib/context";
 import { collection, doc, getDoc, getDocFromServer, writeBatch } from 'firebase/firestore';
+import { useRouter } from 'next/router';
 import debounce from 'lodash.debounce';
 
    
 export default function EnterPage ({}) {
     const {user, username} = useContext(UserContext)
-
+    
     //1. user signed out <SignInButton/>
     //2. user signed in <UsernameForm/>
     //3. user signed in, has username <SignOutButton/>
@@ -73,7 +74,7 @@ function UsernameForm() {
     const [formValue, setFormValue] = useState('');
     const [isValid, setIsValid] = useState(false);
     const [loading, setLoading] = useState(false);
-  
+    const router = useRouter();
     const { user, username } = useContext(UserContext);
   
     const onSubmit = async (e : React.FormEvent) => {
@@ -89,6 +90,8 @@ function UsernameForm() {
       batch.set(usernameDoc, { uid: user?.uid });
   
       await batch.commit();
+      router.push('/');
+      location.reload()
     };
   
     const onChange = (e : BaseSyntheticEvent) => {
