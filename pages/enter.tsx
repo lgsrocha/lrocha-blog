@@ -69,7 +69,7 @@ function SignOutButton() {
     }>Sign Out</button>;
 }
 
-
+  //Precisa ser ajustado, o refresh da página foi implementado como quickfix
 function UsernameForm() {
     const [formValue, setFormValue] = useState('');
     const [isValid, setIsValid] = useState(false);
@@ -91,7 +91,7 @@ function UsernameForm() {
   
       await batch.commit();
       router.push('/');
-      location.reload()
+      location.reload();
     };
   
     const onChange = (e : BaseSyntheticEvent) => {
@@ -133,7 +133,7 @@ function UsernameForm() {
           } else {
             setIsValid(true)
           }
-          console.log('Firestore read executed!');
+          console.log('Read no firestore!');
           ;
           setLoading(false);
         }
@@ -146,21 +146,21 @@ function UsernameForm() {
             {
                 !username && (
                     <section>
-                    <h3>Choose Username</h3>
+                    <h3>Escolha seu nome de usuário</h3>
                     <form onSubmit={onSubmit}>
                         <input name="username" placeholder="myname" value={formValue} onChange={onChange} />
                         <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
                         <button type="submit" className="btn-green" disabled={!isValid}>
-                        Choose
+                        Escolher
                         </button>
             
-                        <h3>Debug State</h3>
+                        <h3>Para Debug</h3>
                         <div>
                         Username: {formValue}
                         <br />
                         Loading: {loading.toString()}
                         <br />
-                        Username Valid: {isValid.toString()}
+                        Válido? {isValid.toString()}
                         </div>
                     </form>
                     </section>
@@ -173,13 +173,13 @@ function UsernameForm() {
   function UsernameMessage({ username, isValid, loading } : 
     {username : string, isValid :boolean, loading : boolean}) {
     if (loading) {
-      return <p>Checking...</p>;
+      return <p>Checkando...</p>;
     } else if (isValid) {
-      return <p className="text-success">{username} is available!</p>;
+      return <p className="text-success">{username} Disponível!</p>;
     } else if (username && !isValid) {
-      return <p className="text-danger">That username is taken!</p>;
+      return <p className="text-danger">Este nome de usuário já foi escolhido</p>;
     } else {
-      return <p>write something!</p>;
+      return <p>Digite um nome curto ou apelido!</p>;
     }
   }
 

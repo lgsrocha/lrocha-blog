@@ -44,13 +44,13 @@ function PostManager() {
                 </section>
 
                 <aside>
-                <h3>Tools</h3>
-                    <button onClick={() => setPreview(!preview)}>{preview ? 'Edit' : 'Preview'}</button>
-                    <Link href={`/${post.username}/${post.slug}`}>
+                <h3>Ferramentas</h3>
+                    <button onClick={() => setPreview(!preview)}>{preview ? 'Editar' : 'Prévia'}</button>
+                    {/* <Link href={`/${post.username}/${post.slug}`}>
                     <button className="btn-blue">Live view</button>
-                    </Link>
+                    </Link> */}
                 </aside>
-            </>
+            </> 
         )}
         </main>
     );
@@ -97,11 +97,11 @@ function PostForm({ defaultValues, postRef, preview }) {
 
                 <fieldset>
                     <input className={styles.checkbox} type="checkbox" {...register("published")} />
-                    <label>Published</label>
+                    <label>Publicar</label>
                 </fieldset>
 
                 <button type="submit" className="btn-green" disabled={!isDirty || !isValid}>
-                    Save Changes
+                    Salvar Alterações
                 </button>
             </div>
         </form>

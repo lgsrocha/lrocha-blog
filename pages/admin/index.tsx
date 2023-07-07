@@ -35,7 +35,7 @@ function PostList() {
 
   return (
     <>
-      <h1>Manage your Posts</h1>
+      <h1>Administrar seus Posts</h1>
       <PostFeed posts={posts as [post]} admin />
     </>
   );
@@ -65,7 +65,7 @@ function CreateNewPost() {
         uid,
         username,
         published: false,
-        content: '# hello world!',
+        content: 'Deixe sua mensagem aqui!',
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         heartCount: 0,
@@ -73,7 +73,7 @@ function CreateNewPost() {
 
         await setDoc(ref, data);
 
-        toast.success('Post created!')
+        toast.success('Post Criado!')
 
         // Imperative navigation after doc is set
         router.push(`/admin/${slug}`);
@@ -85,14 +85,14 @@ function CreateNewPost() {
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="My Awesome Article!"
+        placeholder="Título para um novo post..."
         className={styles.input}
       />
       <p>
         <strong>Slug:</strong> {slug}
       </p>
       <button type="submit" disabled={!isValid} className="btn-green">
-        Create New Post
+        Criar novo post
       </button>
     </form>
   );

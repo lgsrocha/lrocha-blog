@@ -7,12 +7,12 @@ export default function PostFeed({ posts, admin } : PostFeedType) : any {
 function PostItem({ post, admin = false } : PostItem) {
   // Naive method to calc word count and read time
   const wordCount = post?.content.trim().split(/\s+/g).length;
-  const minutesToRead = (wordCount / 100 + 1).toFixed(0);
+  const minutesToRead : number  = +(wordCount / 100 + 1).toFixed(0);
 
-  return (
+  return (  
     <div className="card">
       <Link href={`/${post.username}`}>
-          <strong>By @{post.username}</strong>
+          <strong>Autor @{post.username}</strong>
       </Link>
 
       <Link href={`/${post.username}/${post.slug}`}>
@@ -23,9 +23,9 @@ function PostItem({ post, admin = false } : PostItem) {
 
       <footer>
         <span>
-          {wordCount} words. {minutesToRead} min read
+          {wordCount} palavras. Leitura de ~{minutesToRead} {minutesToRead > 1 ? "minutos" : "minuto"}.
         </span>
-        <span className="push-left">💗 {post.heartCount || 0} Hearts</span>
+        <span className="push-left">👍 {post.heartCount || 0} Curtidas</span>
       </footer>
 
       {/* If admin view, show extra controls for user */}
@@ -33,11 +33,11 @@ function PostItem({ post, admin = false } : PostItem) {
         <>
           <Link href={`/admin/${post.slug}`}>
             <h3>
-              <button className="btn-blue">Edit</button>
+              <button className="btn-blue">Editar</button>
             </h3>
           </Link>
 
-          {post.published ? <p className="text-success">Live</p> : <p className="text-danger">Unpublished</p>}
+          {post.published ? <p className="text-success">Publicado!</p> : <p className="text-danger">Não publicado</p>}
         </>
       )}
     </div>

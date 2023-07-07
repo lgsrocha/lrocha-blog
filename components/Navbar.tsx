@@ -21,7 +21,7 @@ export default function Navbar(){
                         <>
                             <li className="push-left">
                                 <Link href="/admin">
-                                    <button className="btn-blue">Write Posts</button>
+                                    <button className="btn-blue">Meus Posts</button>
                                 </Link>
                             </li>
                             <li>
@@ -36,7 +36,7 @@ export default function Navbar(){
                     {!username && (
                         <li>
                             <Link href="/enter">
-                                <button className="btn-blue">Log In</button>
+                                <button className="btn-blue">Logar</button>
                             </Link>
                         </li>
                     )}

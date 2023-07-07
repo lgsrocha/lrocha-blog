@@ -31,10 +31,10 @@ export default function Heart({ postRef } : {postRef : DocumentReference}) {
 
     await batch.commit();
   };
-
+  
   return heartDoc?.exists() ? (
-    <button onClick={removeHeart}>💔 Unheart</button>
+    <button onClick={removeHeart}>👎 Remover</button>
   ) : (
-    <button onClick={addHeart}>💗 Heart</button>
+    <button onClick={addHeart}>👍 Curtir</button>
   );
 }

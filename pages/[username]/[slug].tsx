@@ -65,12 +65,12 @@ export default function PostPage (props) {
 
             <aside className="card">
                 <p>
-                <strong>{post.heartCount || 0} 🤍</strong>
+                <strong>{post.heartCount < 1 ? "Sem" : post.heartCount} {post.heartCount > 1 ? "Curtidas" : "Curtida"} </strong>
                 </p>
                 <AuthCheck
                   fallback={
                     <Link href="/enter">
-                      <button>💗 Sign Up</button>
+                      <button>💗 Se Cadastrar</button>
                     </Link>
                   }
                 >
