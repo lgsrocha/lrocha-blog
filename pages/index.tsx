@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 // o máximo de posts pesquisados por página
-const LIMIT = 1;
+const LIMIT = 5;
 
 export async function getServerSideProps(context) {
   const postsQuery = query(
