@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar';
+import { ThemeProvider } from '@/components/theme-context';
 import {UserContext } from '@/lib/context';
 import { useUserData } from '@/lib/hooks';
 import '@/styles/globals.css'
@@ -14,9 +15,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
       <UserContext.Provider value={userData as any}>
-        <Navbar/>
-        <Component {...pageProps} />
-        <Toaster/>
+        <ThemeProvider>
+          <Navbar/>
+          <Component {...pageProps} />
+          <Toaster/>
+        </ThemeProvider>
       </UserContext.Provider>  
    );
 }
