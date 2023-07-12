@@ -2,7 +2,7 @@ import { getUserWithUsername, postToJSON, storage } from '../../lib/firebase';
 import UserProfile from '../../components/UserProfile';
 import PostFeed from '../../components/PostFeed';
 import { post, userType } from '@/Types/Global/Types';
-import {  collection, getDocs, limit, orderBy, query as queue, where} from 'firebase/firestore';
+import {  collection, getDocs, getFirestore, limit, orderBy, query as queue, where} from 'firebase/firestore';
 
 
 export async function getServerSideProps({query} : {query : {username: string}}) {
@@ -22,14 +22,16 @@ export async function getServerSideProps({query} : {query : {username: string}})
   let posts = null;
 
   if (userDoc) {
-    console.log(typeof query)
+    
+    // console.log(typeof query)
     user = userDoc.data();
-    const postsQuery = queue(collection(storage, "posts"),
-      where("published", "==", true),
-      orderBy("createdAt", "desc"),
+    const postsQuery = queue(
+      collection(getFirestore(), userDoc.ref.path, 'posts'),
+      where('published', '==', true),
+      orderBy('createdAt', 'desc'),
       limit(5)
-      );
-    posts = ((await getDocs(postsQuery)).docs.map(postToJSON));
+    );
+    posts = (await getDocs(postsQuery)).docs.map(postToJSON);
   }
   
   return {
@@ -37,6 +39,7 @@ export async function getServerSideProps({query} : {query : {username: string}})
   };
 }
 export default function UserProfilePage({ user, posts } :{user : userType, posts: [post]}) {
+
   return (
     <main>
       <UserProfile user={user} />

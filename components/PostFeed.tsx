@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { PostFeedType, PostItem } from '@/Types/Global/Types';
+
 export default function PostFeed({ posts, admin } : PostFeedType) : any {
   return posts ? posts.map((post) => <PostItem post={post} key={post.slug} admin={admin} />) : null;
 }

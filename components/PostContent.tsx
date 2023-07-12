@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
+import { useUserData } from '@/lib/hooks';
 
 // UI component for main post content
 export default function PostContent({ post }) {
@@ -17,7 +18,7 @@ export default function PostContent({ post }) {
     <div className="card">
       <h1>{post?.title}</h1>
       <span className="text-sm">
-        Escrito por{' '}
+        Escrito por{}
         <Link className="text-info" href={`/${post.username}/`}>
           @{post.username}
         </Link>{' '}
