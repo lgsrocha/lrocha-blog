@@ -5,6 +5,7 @@ import { UserContext } from "@/lib/context";
 import { collection, doc, getDoc, getDocFromServer, writeBatch } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import debounce from 'lodash.debounce';
+import Link from 'next/link';
 
    
 export default function EnterPage ({}) {
@@ -57,16 +58,16 @@ function SignInButton() {
   }
 
 
-function SignOutButton() {
+export function SignOutButton() {
 
-    return <button onClick={() => signOut(auth)
-        .then(() => {
-            console.log('logged out');
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }>Sign Out</button>;
+    return <Link href="/" ><button className='logoutArea' onClick={() => signOut(auth)
+      .then(() => {
+          console.log('logged out');
+      })
+      .catch((error) => {
+          console.log(error);
+      })
+  }></button></Link>;
 }
 
   //Precisa ser ajustado, o refresh da página foi implementado como quickfix

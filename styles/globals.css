@@ -2,54 +2,61 @@
 
 :root {
   /* These will be the default colors (usually for light theme) */
-  --color-bg: #FAF9F6;     
-  --color-text: #3E3832;   
-  --color-primary: #759CFA;   
-  --color-secondary: #8897A2;
-  --color-success: #88D4A5;  
-  --color-danger: #B30000;   
-  --color-neutral: #C3C8CD;  
-  --color-accent: #B5BEC8;     
+  --color-bg: #DAE0E6;           /* Background color */
+  --color-text: #000000;         /* Text color */
+  --color-primary: #051657;      /* Primary color (Base color) */
+  --color-secondary: #ffffff;    /* Secondary color */
+  --color-success: #217821;      /* Success color */
+  --color-danger: #e70303;   /* Danger color */
+  --color-neutral: #8897A2;      /* Neutral color */
+  --color-accent: #0272C4;       /* Accent color */   /* Slightly brighter version of --color-neutral for accents */
+  --logoUrl: url(../public/blackLogo_noBg.svg);
+  --themeUrl:url(../public/circle-half-stroke-solid_white.svg);
+  --editUrl:url(../public/pencil-solid.svg);
+  --enterUrl:url(../public/enter-Arrow.svg);
+  --leaveUrl:url(../public/leave-Arrow.svg);
 }
 
 .dark-theme {
   /* These will override the default colors for dark theme */
-  --color-bg: #1F2937;
-  --color-text: #F3F4F6;
+  --color-bg: #000000;
+  --color-text: #ffffff;
   --color-primary: #60A5FA;
-  --color-secondary: #4B5563;
-  --color-success: #34D399;
-  --color-danger: #F87171;
+  --color-secondary: #1A1A1B;
+  --color-success: #217821;
+  --color-danger: #B30000; 
   --color-neutral: #6B7280;
-  --color-accent: #9CA3AF;
+  --color-accent: #0272C4;
+  --logoUrl: url(../public/blackLogo_noBg.svg);
+  --themeUrl:url(../public/circle-half-stroke-solid_black.svg);
 }
 
 .toogle-theme {
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: none;
-  background-color: var(--color-secondary);
-  color: var(--color-text);
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  outline: none;
+    display: flex;
+    border-radius: 50%;
+    background-image: var(--themeUrl);
+    background-repeat: no-repeat;
+    background-size: contain; /* Adjust to your preference */
+    height: 35px;
+    width: 35px;
+    padding: 0; 
 }
 
 .toogle-theme:hover {
-  background-color: var(--color-accent);
   color: var(--color-bg);
 }
 
-/* You might want to adjust styles for dark and light themes: */
 .dark-theme .toogle-theme {
-  background-color: var(--color-secondary);
+  background-color: #ffffff;
   color: var(--color-text);
+  -webkit-transform:rotate(180deg);
+  border: solid;
+  border-width: thin;
 }
 
 .light-theme .toogle-theme {
-  background-color: var(--color-secondary);
   color: var(--color-bg);
+  background-color: var(--color-secondary); 
 }
 
 html,
@@ -87,12 +94,12 @@ img {max-width: 100%;}
 input { 
   display: inline-block; 
   border-radius: 8px;
-  background-color: var(--color-secondary);
+  background-color: #ffffff;
   margin: 1rem 0;
 }
 
 input::placeholder {
-  color: var(--color-text);
+  color: #000000;
   font-size: x-large;
 }
 
@@ -107,6 +114,15 @@ code {
 }
 
 /* Navbar */
+
+.logoNav{
+  display: flex;
+  background-image: var(--logoUrl);
+  background-repeat: no-repeat;
+  background-size: contain; /* Adjust to your preference */
+  width: 155px;
+  height: 40px;
+}
 
 .navbar {
   height: 56px;
@@ -136,17 +152,24 @@ code {
   width: 40px;
   height: 40px;
   cursor: pointer;
+  border: solid;
+  margin: 8px 16px 8px 0px;
 }
 
 .navbar li {
   border-radius: 50%;
-  
 }
+
+.navPic {
+  padding-top: 5px;
+}
+  
+
 
 /* Buttons */
 
 .btn, button {
-  background-color: var(--color-secondary);
+  background-color: var(--color-accent);
   border: none;
   color: var(--color-text);
   padding: 1rem 2rem;
@@ -180,14 +203,90 @@ button[disabled]{
   cursor: not-allowed;
 }
 
-button.btn-blue {
-  background-color: var(--color-accent);
-  color: var(--color-text);
+.btn-editArea{
+  background: center;
+  background-image: var(--editUrl);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: solid;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin: 8px 16px 8px 0px;
 }
 
+.dark-theme .btn-editArea{
+  background: center;
+  background-image: var(--editUrl);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin: 8px 16px 8px 0px;
+}
+
+.loginArea{
+  padding: 0;
+  background: center;
+  background-image: var(--enterUrl);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: solid;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin: 8px 16px 8px 0px;
+}
+
+.dark-theme .loginArea{
+  padding: 0;
+  background: center;
+  background-image: var(--enterUrl);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin: 8px 16px 8px 0px;
+}
+
+.logoutArea{
+  padding: 0;
+  background: center;
+  background-image: var(--leaveUrl);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: solid;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin: 8px 16px 8px 0px;
+}
+
+li main{
+  padding: 0;
+}
+
+.dark-theme .logoutArea{
+  padding: 0;
+  background: center;
+  background-image: var(--leaveUrl);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin: 8px 16px 8px 0px;
+}
+
+
 button.btn-red {
-  background-color: var(--color-red);
-  color: white;
+  background-color: var(--color-danger);
+  color: var(--color-text)
 }
 
 button.btn-green {
@@ -195,9 +294,14 @@ button.btn-green {
   color: white;
 }
 
+button.btn-blue{
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+
 button.btn-google {
   background-color: white;
-  color: var(--color-text);
+  color: #000000;
 }
 
 .btn-google img {
@@ -214,6 +318,14 @@ button.btn-logo {
 }
 
 /* Cards */
+.link-text{
+  color: blue;
+  cursor: pointer;
+}
+
+.link-text:hover{
+  text-decoration: underline;
+}
 
 .card {
   padding: 2rem 2rem 0.7rem 2rem;
@@ -221,6 +333,14 @@ button.btn-logo {
   background-color: var(--color-secondary);
   border: 1px solid var(--color-gray);
   border-radius: 8px;
+}
+
+.card h2 {
+  -webkit-text-stroke-width: thin;
+}
+
+.card h2:hover {
+  text-decoration: underline;
 }
 
 .card footer {

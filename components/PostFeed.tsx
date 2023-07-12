@@ -12,7 +12,10 @@ function PostItem({ post, admin = false } : PostItem) {
   return (  
     <div className="card">
       <Link href={`/${post.username}`}>
-          <strong>Autor @{post.username}</strong>
+          <strong>Autor{' '}
+           <span className="link-text">@{post.username}</span>
+          </strong>
+          
       </Link>
 
       <Link href={`/${post.username}/${post.slug}`}>

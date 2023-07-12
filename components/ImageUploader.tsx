@@ -5,7 +5,7 @@ import { auth, fileStorage, STATE_CHANGED } from '../lib/firebase';
 import Loader from './Loader';
 
 // Uploads images to Firebase Storage
-export default function ImageUploader() {
+export default function ImageUploader({ onUploadComplete }) {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [downloadURL, setDownloadURL] = useState(null);
@@ -30,15 +30,16 @@ export default function ImageUploader() {
     task.on(STATE_CHANGED, (snapshot) => {
       const pct : any = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(0);
       setProgress(pct);
+    });
 
-      // Get downloadURL AFTER task resolves (Note: this is not a native Promise)
-      task
+    // Get downloadURL AFTER task resolves (Note: this is not a native Promise)
+    task
         .then((d) => getDownloadURL(bucketRef))
         .then((url) => {
           setDownloadURL(url);
           setUploading(false);
+          onUploadComplete && onUploadComplete(`![alt](${url})`);
         });
-    });
   };
 
   return (

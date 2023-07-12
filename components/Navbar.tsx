@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useContext } from "react";
 import { UserContext } from "@/lib/context";
 import { ThemeContext } from "./theme-context";
+import SignOutButton  from "@/pages/enter";
 
 // Top Navbar
 export default function Navbar(){
@@ -15,14 +16,8 @@ export default function Navbar(){
             <nav className="navbar">
                 <ul>
                     <li>
-                        <Link href="/">
-                            <button className="btn-logo">FEED</button>
+                        <Link href="/" className="logoNav">
                         </Link>                  
-                    </li>
-                    <li>
-                         <button onClick={toggleTheme} className="toogle-theme">
-                             Tema {theme === 'light' ? 'Escuro' : 'Claro'}
-                         </button>
                     </li>
 
                     {/* user logado e tem username */}
@@ -30,24 +25,39 @@ export default function Navbar(){
                         <>
                             <li className="push-left">
                                 <Link href="/admin">
-                                    <button className="btn-blue">Meus Posts</button>
+                                    <div className="btn-editArea">
+                                        {/* <button className="btn-edit"></button> */}
+                                    </div>
                                 </Link>
                             </li>
-                            <li>
+                            <li className="navPic">
                                 <Link href={`/${username}`}>
                                     <img src={user?.photoURL}/>
                                 </Link>
+                            </li>
+                            <li>
+                                <button onClick={toggleTheme} className="toogle-theme">
+                                </button>
+                            </li>
+                            <li>
+                                <SignOutButton style={{padding:0}}/>
                             </li>
                         </>
                     )}
 
                     {/* user não logado OU não tem username */}
                     {!username && (
+                    <>
+                        <li>
+                            <button onClick={toggleTheme} className="toogle-theme">
+                            </button>
+                        </li>
                         <li>
                             <Link href="/enter">
-                                <button className="btn-blue">Logar</button>
+                                <button className="loginArea"></button>
                             </Link>
                         </li>
+                    </>
                     )}
                 </ul>
             </nav>

@@ -17,8 +17,8 @@ export default function AdminPostsPage(props) {
   return (
     <main>
       <AuthCheck>
-        <PostList />
         <CreateNewPost />
+        <PostList />
       </AuthCheck>
     </main>
   );
@@ -88,9 +88,10 @@ function CreateNewPost() {
         placeholder="Título para um novo post..."
         className={styles.input}
       />
-      <p>
-        <strong>Slug:</strong> {slug}
-      </p>
+      { title.length > 0 && title.length < 4 &&<span className="warning">Dê um nome para o seu post com ao menos 4 caracteres.</span>}
+      {/* <p>
+        <strong>url:</strong> {'/'}{slug}
+      </p> */}
       <button type="submit" disabled={!isValid} className="btn-green">
         Criar novo post
       </button>
