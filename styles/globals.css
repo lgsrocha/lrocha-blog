@@ -10,11 +10,12 @@
   --color-danger: #e70303;   /* Danger color */
   --color-neutral: #8897A2;      /* Neutral color */
   --color-accent: #0272C4;       /* Accent color */   /* Slightly brighter version of --color-neutral for accents */
-  --logoUrl: url(../public/blackLogo_noBg.svg);
-  --themeUrl:url(../public/circle-half-stroke-solid_white.svg);
-  --editUrl:url(../public/pencil-solid.svg);
-  --enterUrl:url(../public/enter-Arrow.svg);
-  --leaveUrl:url(../public/leave-Arrow.svg);
+  --logoUrl: url('/blackLogo_noBg.svg');
+  --themeUrl:url('/circle-half-stroke-solid_white.svg');
+  --editUrl:url('/pencil-solid.svg');
+  --enterUrl:url('/enter-Arrow.svg');
+  --leaveUrl:url('/leave-Arrow.svg');
+  
 }
 
 .dark-theme {
@@ -27,8 +28,8 @@
   --color-danger: #B30000; 
   --color-neutral: #6B7280;
   --color-accent: #0272C4;
-  --logoUrl: url(../public/blackLogo_noBg.svg);
-  --themeUrl:url(../public/circle-half-stroke-solid_black.svg);
+  --logoUrl: url('/blackLogo_noBg.svg');
+  --themeUrl:url('/circle-half-stroke-solid_black.svg');
 }
 
 .toogle-theme {
