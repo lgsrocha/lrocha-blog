@@ -429,3 +429,24 @@ input[type="file"] {
 }
 
 .hidden { display:  none; }
+
+
+
+@media (max-width: 766px) {
+  /* CSS rules for screens with width less than 766px */
+  main {
+    padding: 0;
+  }
+
+  body {
+    font-size: 14px;
+  }
+  
+  .container {
+    width: 90%;
+  }
+  
+  .navbar{
+    padding: 0;
+  }
+}

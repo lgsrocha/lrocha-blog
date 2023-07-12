@@ -65,7 +65,7 @@ function CreateNewPost() {
         uid,
         username,
         published: false,
-        content: 'Deixe sua mensagem aqui!',
+        content: '',
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         heartCount: 0,
