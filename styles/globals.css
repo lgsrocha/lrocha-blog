@@ -165,7 +165,16 @@ code {
   padding-top: 5px;
 }
   
+/* Username Selection */
+.usernameSelection{
+  background-color: var(--color-secondary);
+  border-radius: 5px;
+  padding: 10px;
+}
 
+.usernameSelection input{
+  height: 40px;
+}
 
 /* Buttons */
 
@@ -347,6 +356,12 @@ button.btn-logo {
 .card footer {
   display: flex;
 }
+
+section .card a {
+  color: #8a2be2;
+  text-decoration: underline;
+  cursor: pointer;
+} 
 
 .card-img-center {
   width:20%;

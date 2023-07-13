@@ -28,6 +28,7 @@ export default function EnterPage ({}) {
 
 
 function SignInButton() {
+    const router = useRouter();
     const signInWithGoogle = async () => {
       await signInWithPopup(auth, googleAuthProvider)
       .then((result : any) => {
@@ -37,6 +38,7 @@ function SignInButton() {
         // The signed-in user info.
         const user = result.user;
         // redux action? --> dispatch({ type: SET_USER, user });
+        router.push('/');
     })
     .catch((error : any) => {
         // Handle Errors here.
@@ -50,7 +52,7 @@ function SignInButton() {
     });
     };
   
-    return (    
+    return (
       <button className="btn-google" onClick={signInWithGoogle}>
         <img src={'/google.svg'} /> Sign in with Google
       </button>
@@ -146,23 +148,23 @@ function UsernameForm() {
         <>
             {
                 !username && (
-                    <section>
+                    <section className='usernameSelection'>
                     <h3>Escolha seu nome de usuário</h3>
                     <form onSubmit={onSubmit}>
-                        <input name="username" placeholder="myname" value={formValue} onChange={onChange} />
+                        <input name="username" placeholder="meuApelido" value={formValue} onChange={onChange} />
                         <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
                         <button type="submit" className="btn-green" disabled={!isValid}>
                         Escolher
                         </button>
             
-                        <h3>Para Debug</h3>
+                        {/* <h3>Para Debug</h3>
                         <div>
                         Username: {formValue}
                         <br />
                         Loading: {loading.toString()}
                         <br />
                         Válido? {isValid.toString()}
-                        </div>
+                        </div> */}
                     </form>
                     </section>
                 )

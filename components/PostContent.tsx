@@ -18,7 +18,7 @@ export default function PostContent({ post }) {
     <div className="card">
       <h1>{post?.title}</h1>
       <span className="text-sm">
-        Escrito por{}
+        Escrito por{" "}
         <Link className="text-info" href={`/${post.username}/`}>
           @{post.username}
         </Link>{' '}
