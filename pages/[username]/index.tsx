@@ -23,7 +23,6 @@ export async function getServerSideProps({query} : {query : {username: string}})
 
   if (userDoc) {
     
-    // console.log(typeof query)
     user = userDoc.data();
     const postsQuery = queue(
       collection(getFirestore(), userDoc.ref.path, 'posts'),

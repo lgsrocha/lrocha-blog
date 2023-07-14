@@ -9,25 +9,33 @@ import styles from '../../styles/Post.module.css';
 
 
 export async function getStaticProps({ params }) {
-    const { username, slug } = params;
-    const userDoc = await getUserWithUsername(username);
-  
-    let post;
-    let path;
-  
-      
-    if (userDoc) {
+  const { username, slug } = params;
+  const userDoc = await getUserWithUsername(username);
+
+  let post;
+  let path;
+
+  if (userDoc) {
     const postRef = doc(userDoc.ref, 'posts', slug);
-      post = postToJSON(await getDoc(postRef));
-  
-      path = postRef.path;
+    const postDoc = await getDoc(postRef)
+    
+    // Check if post title exists, if not shortcut to 404
+    if (postDoc.data()?.title === undefined) {
+      return {
+        notFound: true,
+      };
     }
-  
-    return {
-      props: { post, path },
-      revalidate: 5000,
-    };
+
+    post = postToJSON(postDoc);
+    path = postRef.path;
+  }
+
+  return {
+    props: { post, path },
+    revalidate: 5000,
+  };
 }
+
 
 export async function getStaticPaths() {
     // Improve using Admin SDK to select empty docs
