@@ -58,6 +58,11 @@ export default function Home(props) {
 
   return (
     <main>
+        {/* post Fixo temporário */}
+        <div className="cardFixo"><a href="/lucasdev">
+          <strong>Autor <span className="link-text">@lucasdev</span></strong></a><a href="/lucasdev/bem-vindo"><h2>Bem Vindo!</h2></a><footer><span>265 palavras. Leitura de ~4minutos.</span><span className="push-left"></span></footer>
+        </div>
+
         <PostFeed posts={posts} admin={false} />
 
         {!postsEnd && <button onClick={getMorePosts}>Carregar Mais</button>}
@@ -66,6 +71,7 @@ export default function Home(props) {
 
         {postsEnd && 'Acabaram os posts!'}
       </main>
+      
   )
  }
 
