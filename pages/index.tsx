@@ -4,6 +4,7 @@ import { storage, fromMillis, postToJSON } from '../lib/firebase';
 import { collectionGroup, getDocs, limit, orderBy, query, startAfter, where } from 'firebase/firestore';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import CardFixo from '@/components/CardFixo';
 
 // o máximo de posts pesquisados por página
 const LIMIT = 5;
@@ -58,10 +59,8 @@ export default function Home(props) {
 
   return (
     <main>
-        {/* post Fixo temporário */}
-        <div className="cardFixo"><a href="/lucasdev">
-          <strong>Autor <span className="link-text">@lucasdev</span></strong></a><a href="/lucasdev/bem-vindo"><h2>Bem Vindo!</h2></a><footer><span>265 palavras. Leitura de ~4minutos.</span><span className="push-left"></span></footer>
-        </div>
+        
+        <CardFixo/>
 
         <PostFeed posts={posts} admin={false} />
 

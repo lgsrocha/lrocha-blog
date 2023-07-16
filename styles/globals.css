@@ -345,6 +345,12 @@ button.btn-logo {
   border-radius: 8px;
 }
 
+.cardFixo footer {
+  display: flex;
+}
+
+
+
 .card {
   padding: 2rem 2rem 0.7rem 2rem;
   margin: 1rem 0;
